@@ -27,6 +27,7 @@ def main(args):
     
     __dir, __ext = parsed_args.dir, parsed_args.ext
     polling_interval, magic = parsed_args.int, parsed_args.magic
+    
     init_files = dir_search(__ext, __dir)
     # Now my signal_handler will get called if OS sends either of these to my process.
 
