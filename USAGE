@@ -1,0 +1,10 @@
+usage: dirwatcher.py [-h] [--int INT] dir ext magic
+
+positional arguments:
+  dir                Directory to watch.
+  ext                File extension to watch.
+  magic              Text to watch for.
+
+optional arguments:
+  -h, --help         show this help message and exit
+  --int INT, -i INT  Polling interval.
