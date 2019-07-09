@@ -8,6 +8,7 @@ from helper.create_parser import create_parser
 from helper.dir_search import dir_search
 from helper.find_word import find_word
 from helper.log_event import log_event
+from helper.watcher import watcher
 
 exit_flag = False
 
@@ -22,14 +23,13 @@ def main(args):
 
     parsed_args = parser.parse_args(args)
 
-    # Hook these two signals from the OS ..
     signal.signal(signal.SIGINT, signal_handler)
     signal.signal(signal.SIGTERM, signal_handler)
     
     __dir, __ext = parsed_args.dir, parsed_args.ext
     polling_interval, magic = parsed_args.int, parsed_args.magic
-    
     data = {}
+
     try:
         for __file in dir_search(__ext, __dir):
             data[__file] = 0
@@ -37,19 +37,14 @@ def main(args):
         log_event(e)
 
     find_word(data, magic)
-    # Now my signal_handler will get called if OS sends either of these to my process.
 
-    # while not exit_flag:
-    #     try:
-    #         pass
-    #        # call my directory watching function.
-    #     except Exception as e:
-    #         pass
-    #         # This is an UNHANDLED exception
-    #         # Log an ERROR level message here
+    while not exit_flag:
+        try:
+            watcher(data,__dir,__ext,magic)
+        except Exception as e:
+            log_event(e)
 
-    #         # put a sleep inside my while loop so I don't peg the cpu usage at 100%
-    #     time.sleep(polling_interval)
+        time.sleep(polling_interval)
 
     # final exit point happens here
     # Log a message that we are shutting down

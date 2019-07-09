@@ -17,12 +17,12 @@ def find_word(files, magic):
     for __file in files.keys():
         with open(__file) as f:
             for _ in range(files[__file]):
-                next(f)
+                f.readline()
             line = f.readline()
             while len(line) > 0:
                 if magic.lower() in line.lower():
                     log_event("{} found at {} on line {}".format(magic, __file, files[__file]))
                 line = f.readline()
                 files[__file] += 1
-                
+
     return files
