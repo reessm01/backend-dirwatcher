@@ -6,11 +6,11 @@ import time
 from helper.signal_handler import signal_handler
 from helper.create_parser import create_parser
 from helper.dir_search import dir_search
+from helper.find_word import find_word
 
 exit_flag = False
 
 __author__ = 'Scott Reese'
-
 
 def main(args):
     parser = create_parser()
@@ -28,7 +28,11 @@ def main(args):
     __dir, __ext = parsed_args.dir, parsed_args.ext
     polling_interval, magic = parsed_args.int, parsed_args.magic
     
-    init_files = dir_search(__ext, __dir)
+    data = {}
+    for __file in dir_search(__ext, __dir):
+        data[__file] = 0
+
+    find_word(data, magic)
     # Now my signal_handler will get called if OS sends either of these to my process.
 
     # while not exit_flag:

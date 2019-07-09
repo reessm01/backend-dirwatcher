@@ -15,6 +15,6 @@ def dir_search(ext, file_path = './'):
         {list} -- list of filenames
     """
     try:
-        return [file for file in os.listdir(file_path) if file.endswith(ext)]
+        return [file_path + "/" + file for file in os.listdir(file_path) if file.endswith(ext)]
     except OSError as e:
         print(e)
