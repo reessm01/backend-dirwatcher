@@ -7,6 +7,7 @@ from helper.signal_handler import signal_handler
 from helper.create_parser import create_parser
 from helper.dir_search import dir_search
 from helper.find_word import find_word
+from helper.log_event import log_event
 
 exit_flag = False
 
@@ -29,8 +30,11 @@ def main(args):
     polling_interval, magic = parsed_args.int, parsed_args.magic
     
     data = {}
-    for __file in dir_search(__ext, __dir):
-        data[__file] = 0
+    try:
+        for __file in dir_search(__ext, __dir):
+            data[__file] = 0
+    except TypeError as e:
+        log_event(e)
 
     find_word(data, magic)
     # Now my signal_handler will get called if OS sends either of these to my process.

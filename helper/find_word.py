@@ -1,5 +1,7 @@
 import os
 
+from helper.log_event import log_event
+
 __author__ = "Scott Reese"
 
 def find_word(files, magic):
@@ -19,7 +21,8 @@ def find_word(files, magic):
             line = f.readline()
             while len(line) > 0:
                 if magic.lower() in line.lower():
-                    print("Found it")
+                    log_event("{} found at {} on line {}".format(magic, __file, files[__file]))
                 line = f.readline()
                 files[__file] += 1
+                
     return files
