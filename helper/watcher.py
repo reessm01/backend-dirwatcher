@@ -16,12 +16,14 @@ def watcher(data, file_path, __ext, magic):
         magic {String} -- magic word to search for
     """
     init_list = data.keys()
-    new_entries = list(set(init_list) - set(dir_search(__ext, file_path)))
+    new_entries = list(set(init_list) ^ set(dir_search(__ext, file_path)))
+    print(new_entries)
     new_entry = "new file found {}"
     remove_entry = "file removed {}"
 
     for entry in new_entries:
         if entry not in init_list:
+            print(entry)
             data[entry] = 0
             log_event(new_entry.format(entry))
         else:
