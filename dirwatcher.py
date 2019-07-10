@@ -4,7 +4,7 @@ import logging
 import time
 
 from helper.create_parser import create_parser
-from helper.dir_search import dir_search
+from helper.init_data import init_data
 from helper.find_word import find_word
 from helper.log_event import log_event
 from helper.watcher import watcher
@@ -58,14 +58,7 @@ def main(args):
 
     __dir, __ext = parsed_args.dir, parsed_args.ext
     polling_interval, magic = float(parsed_args.int), parsed_args.magic
-    data = {}
-
-    try:
-        for __file in dir_search(__ext, __dir):
-            data[__file] = 0
-    except TypeError as e:
-        log_event(e)
-
+    data = init_data(__ext, __dir)
     data = find_word(data, magic)
 
     while not exit_flag["state"]:
