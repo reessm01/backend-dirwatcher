@@ -66,11 +66,11 @@ def main(args):
     except TypeError as e:
         log_event(e)
 
-    find_word(data, magic)
+    data = find_word(data, magic)
 
     while not exit_flag["state"]:
         try:
-            watcher(data, __dir, __ext, magic)
+            data = watcher(data, __dir, __ext, magic)
         except Exception as e:
             log_event(e)
 

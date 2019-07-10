@@ -30,4 +30,4 @@ def watcher(data, file_path, __ext, magic):
             del data[entry]
             log_event(remove_entry.format(entry))
 
-    find_word(data, magic)
+    return find_word(data, magic)
