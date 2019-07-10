@@ -10,5 +10,6 @@ def log_event(msg):
 
     FORMAT = '%(asctime)-15s %(message)s'
     logging.basicConfig(format=FORMAT)
-
-    logging.warning(msg)
+    logger = logging.getLogger('dirwatcher')
+    logger.setLevel(logging.INFO)
+    logger.info(msg)
