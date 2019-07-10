@@ -4,6 +4,7 @@ from helper.log_event import log_event
 
 __author__ = "Scott Reese"
 
+
 def watcher(data, file_path, __ext, magic):
     """Filters out if there were new files added to the file path, 
     adds and searches for the magic word. Removes as needed if

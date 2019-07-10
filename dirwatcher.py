@@ -9,7 +9,7 @@ from helper.find_word import find_word
 from helper.log_event import log_event
 from helper.watcher import watcher
 
-exit_flag= {"state" : False }
+exit_flag = {"state": False}
 
 __author__ = 'Scott Reese'
 
@@ -46,7 +46,7 @@ def main(args):
     if not args:
         parser.print_usage()
         sys.exit(1)
-    
+
     print(start_msg)
 
     then = time.time()

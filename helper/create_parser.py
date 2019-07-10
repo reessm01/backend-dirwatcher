@@ -1,5 +1,6 @@
 import argparse
 
+
 def create_parser():
     """Returns an arg parser"""
 
