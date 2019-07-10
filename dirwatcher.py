@@ -47,11 +47,11 @@ def main(args):
         parser.print_usage()
         sys.exit(1)
 
-    log_event(start_msg, "")
 
     then = time.time()
 
     parsed_args = parser.parse_args(args)
+    log_event(start_msg, "")
 
     signal.signal(signal.SIGINT, signal_handler)
     signal.signal(signal.SIGTERM, signal_handler)
