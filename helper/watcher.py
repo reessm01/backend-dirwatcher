@@ -23,7 +23,6 @@ def watcher(data, file_path, __ext, magic):
 
     for entry in new_entries:
         if entry not in init_list:
-            print(entry)
             data[entry] = 0
             log_event(new_entry.format(entry))
         else:

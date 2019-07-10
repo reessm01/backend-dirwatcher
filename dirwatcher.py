@@ -47,7 +47,7 @@ def main(args):
         parser.print_usage()
         sys.exit(1)
 
-    print(start_msg)
+    log_event(start_msg, "")
 
     then = time.time()
 
@@ -69,7 +69,7 @@ def main(args):
 
         time.sleep(polling_interval)
     run_time = time.time() - then
-    print(end_msg.format(str(run_time)))
+    log_event(end_msg.format(str(run_time)), "")
 
 
 if __name__ == '__main__':
