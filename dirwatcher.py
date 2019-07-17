@@ -67,7 +67,7 @@ def main(args):
         try:
             data = watcher(data, __dir, __ext, magic)
         except Exception as e:
-            pass
+            logger.error(e)
 
         time.sleep(polling_interval)
     run_time = time.time() - then
