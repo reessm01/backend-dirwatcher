@@ -7,16 +7,16 @@ A long running program that watches a specified directory for a magic word withi
 ### CLI Configuration
 
 ```
-usage: dirwatcher.py [-h] [--int INT] dir ext magic
+usage: dirwatcher.py [-h] [-e EXT] [-i INT] dir magic
 
 positional arguments:
   dir                Directory to watch.
-  ext                File extension to watch.
   magic              Text to watch for.
 
 optional arguments:
   -h, --help         show this help message and exit
-  --int INT, -i INT  Polling interval.
+  -e EXT, --ext EXT  File extension to watch.
+  -i INT, --int INT  Polling interval.
   ```
 
 ### Example Usage
