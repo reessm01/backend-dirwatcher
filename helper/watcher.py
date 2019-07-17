@@ -1,9 +1,11 @@
 from helper.dir_search import dir_search
 from helper.find_word import find_word
-from helper.log_event import log_event
+import logging
 
 __author__ = "Scott Reese"
 
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.DEBUG)
 
 def watcher(data, file_path, __ext, magic):
     """Filters out if there were new files added to the file path, 
@@ -24,9 +26,9 @@ def watcher(data, file_path, __ext, magic):
     for entry in new_entries:
         if entry not in init_list:
             data[entry] = 0
-            log_event(new_entry.format(entry))
+            logger.info(new_entry.format(entry))
         else:
             del data[entry]
-            log_event(remove_entry.format(entry))
+            logger.info(remove_entry.format(entry))
 
     return find_word(data, magic)

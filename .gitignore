@@ -1,4 +1,4 @@
 watch_here
 tests_here
-.pyc
+*.pyc
 .vscode
