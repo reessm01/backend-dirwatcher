@@ -1,9 +1,10 @@
 import os
-
-from helper.log_event import log_event
+import logging
 
 __author__ = "Scott Reese"
 
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.DEBUG)
 
 def find_word(files, magic):
     """Checks for and logs if a magic word is found in a list of files
@@ -22,7 +23,7 @@ def find_word(files, magic):
             line = f.readline()
             while len(line) > 0:
                 if magic.lower() in line.lower():
-                    log_event("{} found at {} on line {}".format(
+                    logger.info("{} found at {} on line {}".format(
                         magic, __file, files[__file]))
                 line = f.readline()
                 files[__file] += 1

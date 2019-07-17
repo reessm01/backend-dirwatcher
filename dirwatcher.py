@@ -6,13 +6,15 @@ import time
 from helper.create_parser import create_parser
 from helper.init_data import init_data
 from helper.find_word import find_word
-from helper.log_event import log_event
 from helper.watcher import watcher
 
 exit_flag = {"state": False}
 
 __author__ = 'Scott Reese'
 
+logger = logging.getLogger(__name__)
+logging.basicConfig(format="%(asctime)-15s %(levelname)s %(filename)s %(message)s")
+logger.setLevel(logging.INFO)
 
 def signal_handler(sig_num, frame):
     """
@@ -51,7 +53,7 @@ def main(args):
     then = time.time()
 
     parsed_args = parser.parse_args(args)
-    log_event(start_msg, "")
+    logger.info(start_msg)
 
     signal.signal(signal.SIGINT, signal_handler)
     signal.signal(signal.SIGTERM, signal_handler)
@@ -65,11 +67,11 @@ def main(args):
         try:
             data = watcher(data, __dir, __ext, magic)
         except Exception as e:
-            log_event(e)
+            pass
 
         time.sleep(polling_interval)
     run_time = time.time() - then
-    log_event(end_msg.format(str(run_time)), "")
+    logger.info(end_msg.format(str(run_time)))
 
 
 if __name__ == '__main__':

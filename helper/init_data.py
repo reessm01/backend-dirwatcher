@@ -1,6 +1,8 @@
 from helper.dir_search import dir_search
-from helper.log_event import log_event
+import logging
 
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.DEBUG)
 
 def init_data(__ext, __dir):
     """Initializes the files data dict with info from the directory and targeted extension
@@ -16,7 +18,7 @@ def init_data(__ext, __dir):
     try:
         for __file in dir_search(__ext, __dir):
             data[__file] = 0
-    except TypeError as e:
-        log_event(e)
+    except Exception as e:
+        logger.error(e)
 
     return data
